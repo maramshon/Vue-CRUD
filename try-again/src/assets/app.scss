@@ -1,0 +1,31 @@
+.logo {
+    width: 50px;
+    float: left;
+    margin-right: 15px;
+}
+
+#app {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+
+/* Busy table styling */
+table.b-table[aria-busy='true'] {
+    opacity: 0.6;
+}
+
+.form-group {
+    max-width: 500px;
+  }
+  
+  .actions {
+    padding: 10px 0;
+  }
+  
+  .glyphicon-euro {
+    font-size: 12px;
+  }

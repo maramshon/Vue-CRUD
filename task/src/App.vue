@@ -1,28 +1,53 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header />
+
+    <b-container class="bv-example-row">
+      <b-row>
+        <b-col>
+          <h3>Search</h3>
+        </b-col>
+        <b-col>Add Button</b-col>
+      </b-row>
+
+      <br />
+      <br />
+      <br />
+
+      <b-row sm="6" offset="3">
+        <b-col>
+          <MainList :studentsList="studentsList" />
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from "./components/Header.vue";
+import MainList from "./components/MainList.vue";
+const fb = require("./firebaseConfig.js");
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
-    HelloWorld
+    Header,
+    MainList
+  },
+  data() {
+    return {
+      studentsList: [],
+    };
+  },
+  mounted: function() {
+    // this will equal undefined if I used ES6 Form () => HERE ??!
+    fb.studentsCollection.get().then(results => {
+      this.studentsList = [];
+      results.docs.forEach(doc => {
+        this.studentsList.push(doc.data());
+      });
+    });
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
